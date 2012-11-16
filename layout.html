@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Default Theme</title>
+    <style>
+        html {
+          margin: 0;
+          padding: 0;
+        }
+        body,
+        * {
+          -webkit-font-smoothing: subpixel-antialiased;
+        }
+        body {
+          margin: 0;
+          padding: 0;
+          width: 215.9mm;
+          height: 279.4mmm;
+          color: #000;
+          font-family: helvetica;
+          font-weight: 500;
+          line-height: 18pt;
+          font-size: 13px;
+          background-color: #fff;
+        }
+        img,
+        form,
+        table,
+        tr,
+        td,
+        p,
+        h1,
+        h2,
+        h3,
+        h4 {
+          margin: 0;
+          padding: 0;
+          border: 0;
+          position: relative;
+          color: #000;
+          font-weight: 500;
+        }
+        h1 {
+          font-size: 36px;
+          line-height: 43px;
+          font-family: helvetica;
+          font-weight: normal;
+          padding: 0;
+          margin: 0;
+        }
+        h2 {
+          font-weight: normal;
+          font-size: 2em;
+          margin: 0;
+        }
+        h3 {
+          font-size: 15px;
+          line-height: 22px;
+        }
+        img {
+          max-width: 400px;
+        }
+        p {
+          font-family: helvetica;
+          line-height: 16pt;
+          font-size: 13px;
+          font-weight: 500;
+          padding: 8px 0 8px 0;
+          margin: 0;
+          -webkit-font-smoothing: subpixel-antialiased;
+        }
+        div.page {
+          display: block;
+          /* padding: 20mm; */
+
+          width: 215.9mm;
+          height: 279.4mm;
+          page-break-after: always !important;
+        }
+        div.pdf-page-left {
+          display: block;
+          float: left;
+          width: 155mm;
+        }
+        div.pdf-page-left div.content {
+          padding-top: 10px;
+          font-size: 14px;
+          font-weight: normal;
+        }
+        div.pdf-page-left div.content ol,
+        div.pdf-page-left div.content ul,
+        div.pdf-page-left div.content li,
+        div.pdf-page-left div.content p {
+          font-size: 14px;
+        }
+        div.pdf-page-left div.content p {
+          page-break-inside: avoid;
+        }
+        div.pdf-page-left div.content ul li {
+          list-style-type: square;
+        }
+        div.pdf-page-left div.content ol {
+          list-style-type: numeric;
+        }
+        div.pdf-page-left div.content ol li {
+          list-style-type: numeric;
+        }
+        div.pdf-page-left div.content h2 {
+          font-size: 20px;
+          padding-top: 15px;
+        }
+        div.pdf-page-left div.content h3 {
+          font-size: 12px;
+          font-weight: bold;
+          padding-top: 10px;
+        }
+        div.pdf-page-left div.content img {
+          width: 100%;
+        }
+        hr {
+          display: block !important;
+          page-break-after: always !important;
+          border: 0;
+          line-height: 0;
+          height: 0;
+          clear: both !important;
+        }
+        div.pdf-page-header {
+          height: 150px;
+        }
+        div.pdf-page-header div.heading h2 {
+          padding-bottom: 13px;
+        }
+        div.pdf-page-header div.pdf-page-right div.number {
+          font-size: 13px;
+        }
+        div.pdf-title-page-title {
+          clear: both;
+        }
+        div.pdf-title-page-title h1 {
+          padding-bottom: 30px;
+        }
+        div.pdf-title-page-header div.pdf-page-left {
+          padding-top: 30%;
+        }
+        div.pdf-title-page-header div.heading h1 {
+          padding-bottom: 50px;
+        }
+        div.pdf-title-page-header div.logo img {
+          padding-bottom: 50px;
+        }
+        div.pdf-page-content {
+          clear: both;
+          padding: 0;
+          margin: 0;
+        }
+        div.pdf-page-right {
+          display: block;
+          float: right;
+          width: 53mm;
+        }
+        div.pdf-page-right p,
+        div.pdf-page-right h3,
+        div.pdf-page-right strong {
+          font-size: 13px;
+        }
+        div.details p {
+          color: #999;
+        }
+        div.details p strong {
+          font-weight: 700;
+          color: #000;
+        }
+        div.details h3.provider {
+          padding-top: 20px;
+        }
+        p.cash {
+          padding: 0;
+          margin: 0;
+        }
+        p.cash span.label {
+          color: #000;
+          text-transform: uppercase;
+          text-align: right;
+          display: inline-block;
+          font-weight: bold;
+        }
+        p.cash span.value {
+          width: 100px;
+          color: #000;
+          text-transform: uppercase;
+          text-align: right;
+          display: inline-block;
+          font-weight: bold;
+        }
+        table.quote-table {
+          border-collapse: collapse;
+          margin-top: 10px;
+        }
+        table.quote-table tr.quote-heading td {
+          border-bottom: 2px solid #000;
+          margin-bottom: 13px;
+          font-weight: 700;
+        }
+        table.quote-table tr.line-item td {
+          padding: 5px 0 5px 0;
+          margin: 0;
+        }
+        table.quote-table tr.line-item.quote-first-lineitem td {
+          padding-top: 10px;
+        }
+        table.quote-table tr.subtotal td,
+        table.quote-table tr.tax td,
+        table.quote-table tr.total td {
+          padding: 5px 0 5px 0;
+          text-align: right;
+        }
+        table.quote-table tr.subtotal td {
+          border-top: 2px solid #000;
+        }
+        table.quote-table tr.total td {
+          border-top: 3px solid #000;
+        }
+        table.quote-table tr.total td p span.label {
+          font-weight: 700;
+        }
+        table.quote-table tr.total td p span.value {
+          font-weight: 700;
+        }
+        div.pdf-page-timeline {
+          clear: both;
+          display: block;
+          padding-top: 20px;
+          /**
+             * PROJECT TIMELINE
+             */
+
+        }
+        div.pdf-page-timeline table.timeline-table {
+          border-spacing: 0px;
+          margin-bottom: 30px;
+        }
+        div.pdf-page-timeline table.timeline-table td {
+          border-spacing: 0px;
+          border-right: 2px dashed #ccc;
+          font-size: 10px;
+          color: #333;
+          vertical-align: top;
+          width: 16.66%;
+        }
+        div.pdf-page-timeline table.timeline-table td h2 {
+          display: block;
+          background: #555;
+          color: white;
+          text-transform: uppercase;
+          font-size: 12px;
+          padding: 4px 10px 2px 10px;
+          margin: 0;
+        }
+        div.pdf-page-timeline table.timeline-table td > div {
+          padding: 4px 10px 0px 10px;
+        }
+        div.pdf-page-timeline .no-border {
+          border: none !important;
+        }
+        div.pdf-page-timeline div.payment {
+          display: inline-block;
+          margin: 15px 0 10px -10px;
+          padding: 4px 10px 2px 10px;
+          background: #999;
+          color: white;
+          text-transform: uppercase;
+          font-weight: bold;
+        }
+        div.pdf-page-timeline div.deliverables {
+          width: 60px !important;
+          font-weight: bold;
+        }
+        div.pdf-page-timeline span.payment-amount {
+          display: block;
+          font-weight: bold;
+        }
+        div.pdf-page-timeline div.total-budget {
+          border-top: 2px solid #333;
+          font-size: 18px;
+          padding-top: 10px;
+          text-align: right;
+        }
+        div.pdf-page-timeline div.total-budget p.label,
+        div.pdf-page-timeline div.total-budget p.value {
+          font-weight: 700;
+        }
+    </style>
+
+    {% if snippets.custom_css %}
+        <style>
+            {{ snippets.custom_css }}
+        </style>
+    {% endif %}
+</head>
+<body>
+
+<div class="pages">
+    <div class="page">
+        {{ page }}
+    </div>
+</div>
+
+</body>
+</html>

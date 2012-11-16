@@ -1,0 +1,71 @@
+<div class="pdf-page">
+
+    <div class="pdf-title-page-header">
+        
+        <div class="pdf-page-right">
+            <div class="number">
+                {% if snippets.header %}
+                    {{ snippets.header }}
+                {% else %}
+                    {% if quote.show_number %}Quote # {{ quote.number }}{% endif %}
+                    {% if quote.show_number and quote.show_date %} - {% endif %}
+                    {% if quote.show_date %}{{ quote.date|date_format }}{% endif %}
+                {% endif %}
+            </div>            
+        </div>        
+        <div class="pdf-page-left">
+            <div class="logo">
+                <div class="logo">
+                    {% if company.logo %}
+                        <img src="{{ company.logo }}" />
+                    {% endif %}
+                </div>            
+            </div>                      
+        </div>
+        
+    </div>    
+    
+    <div class="pdf-title-page-title">
+        <h1>{{ page.title }}</h1>
+    </div>
+
+    <div class="pdf-page-content">
+        
+        <div class="pdf-page-right">
+            <div class="details">
+                <h3 style="font-size: 13px;">By</h3>
+                <p>
+                    {% if snippets.company_main %}
+                        {{ snippets.company_main }}
+                    {% else %}
+                        {{ user.name }}<br />
+                        {% if company.name %}{{ company.name }}<br />{% endif %}
+                        {% if company.address %}{{ company.address }}<br />{% endif %}    
+                        {% if company.address2 %}{{ company.address2 }}<br />{% endif %}
+                        {% if company.city %}{{ company.city }}<br />{% endif %}                        
+                        {% if company.state %}{{ company.state }}<br />{% endif %}                        
+                        {% if company.country %}{{ company.country }}<br />{% endif %}                        
+                        {% if company.website %}{{ company.website }}<br />{% endif %}                                
+                    {% endif %}
+                </p>                  
+            </div>
+        </div>
+
+        <div class="pdf-page-left">               
+            <div class="details">
+                <h3 style="font-size:13px;">Prepared For</h3>
+                <p style="font-size: 13px;">
+                    {% if snippets.client_main %}
+                        {{ snippets.client_main }}
+                    {% else %}
+                        {{ client.contact.name }}<br />
+                        {{ client.company.name }}<br />
+                        {{ quote.date|date_format }}
+                    {% endif %}
+                </p>
+            </div>
+        </div><!-- end left side -->
+        
+    </div><!-- end pdf page content -->
+
+</div><!-- end pdf page -->

@@ -1,0 +1,105 @@
+<div class="pdf-page">
+
+    <div class="pdf-page-header">
+        <div class="pdf-page-right">
+            <div class="number">
+                {% if snippets.header %}
+                    {{ snippets.header }}
+                {% else %}
+                    {% if quote.show_number %}Quote # {{ quote.number }}{% endif %}
+                    {% if quote.show_number and quote.show_date %} - {% endif %}
+                    {% if quote.show_date %}{{ quote.date|date_format }}{% endif %}
+                {% endif %}
+            </div>            
+        </div>
+        <div class="pdf-page-left">
+            <div class="logo">
+                {% if company.logo %}
+                    <img src="{{ company.logo }}" />
+                {% endif %}
+            </div>            
+        </div>
+    </div>
+
+    <div class="pdf-page-content">
+        <div class="pdf-page-right">
+            <div class="details">
+                <p>
+                    {% if snippets.timeline_side %}
+                        {{ snippets.timeline_side }}
+                    {% else %}
+                        Our carefully designed process is meant to ensure customer satisfaction throughout the entire project lifecycle, 
+                        while maintaining a high level of efficiency.
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+
+        <div class="pdf-page-left">   
+            <div class="heading">
+                <h2>
+                    {% if snippets.timeline_title %}
+                        {{ snippets.timeline_title }}
+                    {% else %}
+                        Timeline &amp; Process
+                    {% endif %}
+                </h2>
+            </div>                
+            <div class="content">      
+                <p>
+                    {% if snippets.timeline_main %}
+                        {{ snippets.timeline_main }}
+                    {% else %}
+                        The timeline chart below outlines the budget, milestones, and procedure we will follow to complete this project. 
+                        We follow a weekly process to ensure customer satisfaction and project efficiency; Our process begins with a 
+                        discovery phase where we plan everything clearly, then a creative phase where all visual elements are designed 
+                        and approved, then a technical phase where the visual elements are brought to life, and finally a review and 
+                        testing phase.
+                    {% endif %}
+                </p>
+            </div><!-- end content -->
+        </div><!-- end left side -->
+    </div><!-- end pdf page content -->
+    
+    <div class="pdf-page-timeline">
+        <table width="100%" class="timeline-table">
+            {% for milestone in page.milestones %}
+                {% if loop.first %}
+                    <tr>
+                {% endif %}
+
+                {% if loop.index % 7 == 0 %}
+                    </tr><tr>
+                {% endif %}
+
+                <td>
+                    <h2 style="margin-top: {{ loop.index0 * 15 }}px">
+                        {{ milestone.measurement }}
+                        {{ milestone.measurement_count }}
+                    </h2>
+                    <div style="margin-top: 15px">
+                        <div class="deliverables">Deliverables</div>
+                        <div>
+                            {% for deliverable in milestone.deliverables %}
+                                - {{ deliverable.name }}<br />										
+                            {% endfor %}
+
+                            {% if milestone.requires_payment %}
+                                <div class="payment">Payment</div>
+                                <span class="payment-amount">{{ milestone.payment_amount|money_format }}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </td>
+
+                {% if loop.last %}
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </table>        
+        <div class="total-budget">
+            <p class="cash"><span class="label">Total Budget:</span><span class="value">{{ quote.total|money_format }}</span><p>
+        </div>
+    </div>
+
+</div><!-- end pdf page -->

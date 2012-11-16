@@ -1,0 +1,60 @@
+<div class="pdf-page">
+
+    <div class="pdf-page-header">
+        <div class="pdf-page-right">
+            <div class="number">
+                {% if snippets.header %}
+                    {{ snippets.header }}
+                {% else %}
+                    {% if quote.show_number %}Quote # {{ quote.number }}{% endif %}
+                    {% if quote.show_number and quote.show_date %} - {% endif %}
+                    {% if quote.show_date %}{{ quote.date|date_format }}{% endif %}
+                {% endif %}
+            </div>            
+        </div>
+        <div class="pdf-page-left">
+            <div class="logo">
+                {% if company.logo %}
+                    <img src="{{ company.logo }}" />
+                {% endif %}
+            </div>            
+        </div>
+    </div>
+
+    <div class="pdf-page-right">
+        <div class="details">
+            <h3>Client</h3>
+            <p>
+                {% if snippets.client_side %}
+                    {{ snippets.client_side }}
+                {% else %}
+                    {% if client.contact.name %}{{ client.contact.name }}<br />{% endif %}
+                    {% if client.company.name %}{{ client.company.name }}{% endif %}
+                {% endif %}
+            </p>
+            
+            <h3 class="provider">Provider</h3>
+            <p>
+                {% if snippets.company_side %}
+                    {{ snippets.company_side }}
+                {% else %}
+                    {% if user.name %}{{ user.name }}<br />{% endif %}
+                    {% if company.name %}{{ company.name }}<br />{% endif %}
+                    {% if company.website %}{{ company.website }}<br />{% endif %}                                
+                {% endif %}
+            </p>           
+        </div>
+    </div>
+
+    <div class="pdf-page-left">       
+        
+        <div class="heading">
+            <h2>{{ page.title }}</h2>
+        </div>
+        
+        <div class="content">            
+            {{ page.content }}
+        </div><!-- end content -->
+    </div><!-- end left side -->
+
+</div><!-- end pdf page -->

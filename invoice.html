@@ -1,0 +1,150 @@
+<div class="pdf-page">
+
+    <div class="pdf-page-header">
+        <div class="pdf-page-right">         
+            <div class="number">
+                {% if invoice.show_number %}Invoice # {{ invoice.number }}{% endif %}
+                {% if invoice.show_number and invoice.show_date %} - {% endif %}
+                {% if invoice.show_date %}{{ invoice.date|date_format }}{% endif %}
+            </div>
+        </div>
+        <div class="pdf-page-left">
+            <div class="logo">
+                {% if company.logo %}
+                    <img src="{{ company.logo }}" />
+                {% endif %}
+            </div>            
+        </div>
+    </div>
+
+    <div class="pdf-page-right">
+        <div class="details">
+            <h3>Client</h3>
+            <p>
+                {% if snippets.client_side %}
+                    {{ snippets.client_side }}
+                {% else %}
+                    {% if client.contact.name %}{{ client.contact.name }}<br />{% endif %}
+                    {% if client.company.name %}{{ client.company.name }}{% endif %}
+                {% endif %}
+            </p>
+            
+            <h3 class="provider">Provider</h3>
+            <p>
+                {% if snippets.company_side %}
+                    {{ snippets.company_side }}
+                {% else %}
+                    {% if user.name %}{{ user.name }}<br />{% endif %}
+                    {% if company.name %}{{ company.name }}<br />{% endif %}
+                    {% if company.website %}{{ company.website }}<br />{% endif %}                                
+                {% endif %}
+            </p>           
+        </div>
+    </div>
+
+    <div class="pdf-page-left">       
+        
+        <div class="heading">
+            <h2>
+                {% if snippets.invoice_title %}
+                    {{ snippets.invoice_title }}
+                {% else %}
+                    Invoice # {{ invoice.number }}
+                {% endif %}
+            </h2>
+        </div>
+        
+        <div class="content">
+            
+            <p>
+                {% if snippets.invoice_main %}
+                    {{ snippets.invoice_main }}
+                {% else %}
+                    Thank you for the opportunity to serve you. If you have any questions about this invoice, feel free to call us.
+                {% endif %}
+            </p>
+            
+            <table class="quote-table" width="100%">
+                
+                <tr class="quote-heading">
+                    <td colspan="2">INVOICE BREAKDOWN</td>
+                </tr>
+                
+                {% for lineitem in invoice.lineitems %}
+                
+                    {% if loop.first %}
+                        {% set class = ' class="line-item quote-first-lineitem"' %}
+                    {% elif loop.last %}
+                        {% set class = ' class="line-item quote-last-lineitem"' %}
+                    {% else %}
+                        {% set class = ' class="line-item"' %}
+                    {% endif %}
+                    
+                    <tr{{ class|safe }}>
+                        {% if lineitem.type == 'hourly' %}
+
+                            <td>
+                                {{ lineitem.name }}
+                                {% if invoice.hide_hourly_rate %}({{ lineitem.hours }} x {{ lineitem.hourly_rate }}/hr){% endif %}
+                            </td>
+                            <td align="right">
+                                {{ (lineitem.hours * lineitem.hourly_rate)|money_format }}
+                            </td>
+
+                        {% elif lineitem.type == 'fixed' %}
+
+                            <td>
+                                {{ lineitem.name }}
+                            </td>
+                            <td align="right">
+                                {{ lineitem.amount|money_format }}
+                            </td>
+
+                        {% elif lineitem.type == 'recurring' %}
+
+                            <td>
+                                {{ lineitem.name }}
+                            </td>
+                            <td align="right">
+                                {{ lineitem.amount|money_format }} / {{ lineitem.measurement }}
+                            </td>
+
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+                
+                <tr><td colspan="2">&nbsp;</td></tr>
+                <tr><td colspan="2">&nbsp;</td></tr>                
+
+                {% if invoice.include_tax %}
+                    <tr class="subtotal">
+                        <td colspan="2">
+                            <p class="cash">
+                                <span class="label">Sub Total:</span>
+                                <span class="value">{{ invoice.subtotal|money_format }}</span>
+                            <p>
+                        </td>
+                    </tr>
+
+                    <tr class="tax">
+                        <td colspan="2">
+                            <p class="cash">
+                                <span class="label">Tax ({{ invoice.tax_percentage }}%):</span>
+                                <span class="value">{{ (invoice.subtotal * invoice.tax_percentage / 100)|money_format }}</span>
+                            <p> 
+                        </td>
+                    </tr>
+                {% endif %}
+
+                <tr><td colspan="2">&nbsp;</td></tr>                 
+                <tr class="total">
+                    <td colspan="2">
+                        <p class="cash"><span class="label">Total:</span><span class="value">{{ invoice.total|money_format }}</span><p>
+                    </td>
+                </tr>		
+            </table>        
+                
+        </div><!-- end content -->
+    </div><!-- end left side -->
+
+</div><!-- end pdf page -->
