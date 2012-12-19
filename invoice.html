@@ -25,7 +25,11 @@
                     {{ snippets.client_side }}
                 {% else %}
                     {% if client.contact.name %}{{ client.contact.name }}<br />{% endif %}
-                    {% if client.company.name %}{{ client.company.name }}{% endif %}
+                    {% if client.company.name %}{{ client.company.name }}<br />{% endif %}
+                    {% if client.company.address %}{{ client.company.address }}<br />{% endif %}
+                    {% if client.company.city %}{{ client.company.city }, } {% endif %}
+                    {% if client.company.state %}{{ client.company.state } {{ client.company.zip }} } {% endif %}
+
                 {% endif %}
             </p>
             
