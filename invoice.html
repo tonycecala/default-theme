@@ -36,6 +36,9 @@
                 {% else %}
                     {% if user.name %}{{ user.name }}<br />{% endif %}
                     {% if company.name %}{{ company.name }}<br />{% endif %}
+                    {% if company.address %}{{ company.address }}<br />{% endif %}
+                    {% if company.city %}{{ company.city }, } {% endif %}
+                    {% if company.state %}{{ company.state } {{ company.zip }} } {% endif %}
                     {% if company.website %}{{ company.website }}<br />{% endif %}                                
                 {% endif %}
             </p>           
